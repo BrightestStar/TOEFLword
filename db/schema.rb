@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116074904) do
+ActiveRecord::Schema.define(version: 20180116081846) do
+
+  create_table "units", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "unit_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "words", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "spelling"
-    t.integer "unit"
+    t.integer "unit_id"
     t.string "meaning"
     t.string "word_type"
     t.string "sentence"
