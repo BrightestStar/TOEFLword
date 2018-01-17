@@ -12,7 +12,7 @@ class WordsController < ApplicationController
 
   def create
     @word = Word.new(word_params)
-    @unit = Unit.first
+    @unit = Unit.find(params[:word][:unit_id])
     @word.unit = @unit
     @word.save!
     redirect_to words_path
@@ -22,8 +22,19 @@ class WordsController < ApplicationController
   end
 
   def update
+    @unit = Unit.find(params[:word][:unit_id])
+    @word.unit = @unit
     @word.update!(word_params)
     redirect_to words_path
+  end
+
+  def match
+    @words = Word.all.sample(6)
+    @word_synonym = @words.map{|w| w.synonym.split(',').sample}
+  end
+
+  def record_mistake
+
   end
 
   private
@@ -33,6 +44,6 @@ class WordsController < ApplicationController
   end
 
   def word_params
-    params.require(:word).permit(:spelling, :unit, :meaning, :word_type, :sentence, :synonym, :mistake)
+    params.require(:word).permit(:spelling, :meaning, :word_type, :sentence, :synonym, :mistake)
   end
 end

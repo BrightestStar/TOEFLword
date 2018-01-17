@@ -1,0 +1,16 @@
+<h1 align="center">matching</h1>
+<table class="table table-hover">
+  <tr>
+    <th>number</th>
+    <th>spelling</th>
+    <th>synonym</th>
+  </tr>
+  <% @words.each_with_index do |word, i| %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= word.spelling %></td>
+      <td><%= select_tag(:word_id, options_for_select(@word_synonym)) %> </td>
+    </tr>
+  <% end %>
+
+</table>

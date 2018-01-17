@@ -1,6 +1,6 @@
 <%= simple_form_for @word do |f| %>
 <%= f.input :spelling %>
-<%= f.input :unit_id %>
+<%= f.select :unit_id, Unit.all.map{|u| [u.unit_number, u.id]} %>
 <%= f.input :meaning %>
 <%= f.input :word_type %>
 <%= f.input :sentence %>
