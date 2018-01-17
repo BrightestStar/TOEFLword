@@ -3,7 +3,7 @@ class WordsController < ApplicationController
   before_action :find_word, only: [:edit, :update]
 
   def index
-    @words = Word.all
+    @words = Word.all.order('created_at DESC')
   end
 
   def new
