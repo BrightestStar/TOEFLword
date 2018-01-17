@@ -12,6 +12,8 @@ class WordsController < ApplicationController
 
   def create
     @word = Word.new(word_params)
+    @unit = Unit.first
+    @word.unit = @unit
     @word.save!
     redirect_to words_path
   end

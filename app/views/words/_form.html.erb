@@ -1,4 +1,9 @@
-<%= form_for @word do |f| %>
-<%= f.text_field :spelling %>
-<%= f.submit "生成" %>
+<%= simple_form_for @word do |f| %>
+<%= f.input :spelling %>
+<%= f.input :unit_id %>
+<%= f.input :meaning %>
+<%= f.input :word_type %>
+<%= f.input :sentence %>
+<%= f.input :synonym %>
+<%= f.submit "生成", class: "btn btn-info" %>
 <% end %>
