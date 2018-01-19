@@ -33,8 +33,13 @@ class WordsController < ApplicationController
     @word_synonym = @words.map{|w| w.synonym.split(',').sample}
   end
 
-  def record_mistake
-
+  def check_up
+    @word = Word.find(params[:id])
+    @synonym = params[:word][:synonym]
+    @word.mistake = 1
+    @word.save
+    if @word.is_synonym?(@synonym)
+    end
   end
 
   private

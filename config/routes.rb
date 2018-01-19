@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     collection do
       get :match
     end
+    member do
+      post :check_up
+    end
   end
 
   root 'words#index'

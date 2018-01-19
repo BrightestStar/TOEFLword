@@ -4,12 +4,22 @@
     <th>number</th>
     <th>spelling</th>
     <th>synonym</th>
+    <th>option</th>
+    <th id="adjusting">Adjusting</th>
   </tr>
   <% @words.each_with_index do |word, i| %>
     <tr>
       <td><%= i + 1 %></td>
       <td><%= word.spelling %></td>
-      <td><%= select_tag(:word_id, options_for_select(@word_synonym)) %> </td>
+      <%= simple_form_for :word, url: check_up_word_path(word), :remote => true,  html: {method: "post"} do |f| %>
+      <td><%= f.select :synonym, options_for_select(@word_synonym)%></td>
+      <td><%= f.submit 'Check Up', class: "btn btn-primary" %></td>
+      <% end %>
+      <% if word.mistake == 1 %>
+      <td>√</td>
+      <% else %>
+      <td id="check_right-<%= word.id %>"></td>
+      <% end %>
     </tr>
   <% end %>
 

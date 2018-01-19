@@ -1,5 +1,5 @@
 <div class="pull-right" style="margin-bottom:10px">
-  <%= link_to '新增', new_word_path, class:"btn btn-info" %>
+  <%= link_to 'New Word', new_word_path, class:"btn btn-info" %>
 </div>
 <table class="table table-hover">
   <tr>
@@ -17,3 +17,6 @@
   </tr>
   <% end %>
 </table>
+<div class="pull-right" style="margin-top:10px">
+  <%= link_to 'Match Train', match_words_path, class: "btn btn-danger"%>
+</div>
