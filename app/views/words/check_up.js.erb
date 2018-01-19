@@ -1,1 +1,5 @@
+<% if @word.mistake == 1 %>
 $("#check_right-<%= @word.id %>").replaceWith("<td>√</td>");
+<% else %>
+$("#check_right-<%= @word.id %>").replaceWith("<td>X</td>");
+<% end %>

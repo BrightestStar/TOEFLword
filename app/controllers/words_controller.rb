@@ -33,13 +33,20 @@ class WordsController < ApplicationController
     @word_synonym = @words.map{|w| w.synonym.split(',').sample}
   end
 
+  def renew_word
+    Word.where("mistake !=?", 0).update_all(["mistake =?", 0])
+    redirect_to match_words_path
+  end
+
   def check_up
     @word = Word.find(params[:id])
     @synonym = params[:word][:synonym]
-    @word.mistake = 1
-    @word.save
     if @word.is_synonym?(@synonym)
+      @word.mistake = 1
+    else
+      @word.mistake = 2
     end
+    @word.save
   end
 
   private

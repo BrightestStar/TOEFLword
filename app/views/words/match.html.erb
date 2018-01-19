@@ -1,4 +1,7 @@
 <h1 align="center">matching</h1>
+<div class="pull-right" style="margin-bottom:10px">
+  <%= link_to 'renew', renew_word_words_path, class: "btn btn-warning" %>
+</div>
 <table class="table table-hover">
   <tr>
     <th>number</th>
@@ -17,6 +20,8 @@
       <% end %>
       <% if word.mistake == 1 %>
       <td>√</td>
+      <% elsif word.mistake == 2 %>
+      <td>X</td>
       <% else %>
       <td id="check_right-<%= word.id %>"></td>
       <% end %>
