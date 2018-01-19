@@ -29,7 +29,7 @@ class WordsController < ApplicationController
   end
 
   def match
-    @words = Word.all.sample(6)
+    @words = Word.where("mistake =?", 0).order("RAND()").page(params[:page]).per(6)
     @word_synonym = @words.map{|w| w.synonym.split(',').sample}
   end
 
