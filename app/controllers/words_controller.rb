@@ -1,6 +1,7 @@
 class WordsController < ApplicationController
 
   before_action :find_word, only: [:edit, :update]
+  before_action :authenticate_user!, :only => [:new, :match, :check_up]
 
   def index
     @words = Word.all.includes(:unit).order('created_at DESC')
@@ -41,10 +42,12 @@ class WordsController < ApplicationController
   def check_up
     @word = Word.find(params[:id])
     @synonym = params[:word][:synonym]
+    @user = current_user
     if @word.is_synonym?(@synonym)
       @word.mistake = 1
     else
       @word.mistake = 2
+      @word.mistake_records.create!(word_id: @word.id, user_id: @user.id)
     end
     @word.save
   end
