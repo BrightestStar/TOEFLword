@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :match, :check_up]
 
   def index
-    @words = Word.all.includes(:unit).order('created_at DESC')
+    @words = Word.all.includes(:unit, {:mistake_records => :user}).order('created_at DESC').page(params[:page]).per(5)
   end
 
   def new
@@ -31,7 +31,7 @@ class WordsController < ApplicationController
 
   def match
     @words = Word.where("mistake =?", 0).order("RAND()").page(params[:page]).per(6)
-    @word_synonym = @words.map{|w| w.synonym.split(',').sample}
+    @word_synonym = @words.sample(6).map{|w| w.synonym.split(',').sample}
   end
 
   def renew_word

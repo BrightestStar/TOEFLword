@@ -1,22 +1,36 @@
 <div class="pull-right" style="margin-bottom:10px">
   <%= link_to 'New Word', new_word_path, class:"btn btn-info" %>
 </div>
-<table class="table table-hover">
-  <tr>
-    <th>spelling</th>
-    <th>word_type</th>
-    <th>unit</th>
-    <th>sentence</th>
-  </tr>
+<br><br>
+<div class="row">
   <% @words.each do |word| %>
-  <tr>
-    <td><%= link_to "#{word.spelling}", edit_word_path(word) %></td>
-    <td><%= word.word_type %></td>
-    <td><%= word.unit.unit_number %></td>
-    <td><%= word.sentence %></td>
-  </tr>
+    <div class="panel panel-default">
+      <div class="panel-heading text-left">
+        <%= word.spelling %> : <%= word.meaning %>
+        <% if word.mistake_records.where("user_id =?", current_user.id).count != 0 %>
+          <span class="numbercircle notice notice-icon" ><%= word.mistake_records.where("user_id =?", current_user.id).count %></span>
+        <% end %>
+        <p style="float:right">Unit <%= word.unit.unit_number %></p>
+      </div>
+      <div class="panel-body">
+        <p>
+          例句:
+          <br><br>
+          <%= word.sentence %>
+          <br>
+        </p>
+        <hr>
+        <p>
+          近义词:
+          <br><br>
+          <%= word.synonym %>
+        </p>
+        <p style="float:right"><%= link_to 'edit', edit_word_path(word), class: "btn btn-primary" %></p>
+      </div>
+    </div>
   <% end %>
-</table>
+</div>
 <div class="pull-right" style="margin-top:10px">
   <%= link_to 'Match Train', match_words_path, class: "btn btn-danger"%>
 </div>
+<%= paginate @words %>
