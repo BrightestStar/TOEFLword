@@ -1,3 +1,10 @@
+<% @units.each do |unit| %>
+<a class="btn">
+  <%= form_tag words_path, :method => :get do %>
+    <%= submit_tag "Unit #{unit.unit_number}", class: "btn btn-default" %>
+  <% end %>
+</a>
+<% end %>
 <div class="pull-right" style="margin-bottom:10px">
   <%= link_to 'New Word', new_word_path, class:"btn btn-info" %>
 </div>
@@ -33,4 +40,4 @@
 <div class="pull-right" style="margin-top:10px">
   <%= link_to 'Match Train', match_words_path, class: "btn btn-warning"%>
 </div>
-<%= paginate @words %>
+<%= paginate @words, params: {commit: params[:commit]}  %>

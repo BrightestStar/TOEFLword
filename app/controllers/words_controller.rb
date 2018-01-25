@@ -5,6 +5,13 @@ class WordsController < ApplicationController
 
   def index
     @words = Word.all.includes(:unit, {:mistake_records => :user}).order('created_at DESC').page(params[:page]).per(5)
+    @units = Unit.all.order("unit_number ASC")
+
+    if params[:commit].present?
+      unit_num = params[:commit].split(" ").last
+      @unit = Unit.find_by_unit_number(unit_num)
+      @words = @unit.words.includes(:unit, {:mistake_records => :user}).order('created_at DESC').page(params[:page]).per(5)
+    end
   end
 
   def new
