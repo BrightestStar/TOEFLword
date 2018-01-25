@@ -1,24 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+这是一个开源的项目。这个创建这个项目的初衷是，背TOEFL词汇。自己在背单词的是后，发现只是背一背很快就忘记了，但是如果长时间的练习，就很难忘记。于是我想到利用程序来帮我背单词。这个项目就诞生了。里面还有很多待开发的功能，及一些bug，我会不断地完善。 
