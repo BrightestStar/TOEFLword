@@ -14,8 +14,10 @@
     <div class="panel panel-default">
       <div class="panel-heading text-left">
         <%= word.spelling %> : <%= word.meaning %>
-        <% if word.mistake_records.where("user_id =?", current_user.id).count != 0 %>
-          <span class="numbercircle notice notice-icon" ><%= word.mistake_records.where("user_id =?", current_user.id).count %></span>
+        <% if current_user %>
+          <% if word.mistake_records.where("user_id =?", current_user.id).count != 0 %>
+            <span class="numbercircle notice notice-icon" ><%= word.mistake_records.where("user_id =?", current_user.id).count %></span>
+          <% end %>
         <% end %>
         <p style="float:right">Unit <%= word.unit.unit_number %></p>
       </div>

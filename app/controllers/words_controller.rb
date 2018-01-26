@@ -4,14 +4,8 @@ class WordsController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :match, :check_up]
 
   def index
-    @words = Word.all.includes(:unit, {:mistake_records => :user}).order('created_at DESC').page(params[:page]).per(5)
     @units = Unit.all.order("unit_number ASC")
-
-    if params[:commit].present?
-      unit_num = params[:commit].split(" ").last
-      @unit = Unit.find_by_unit_number(unit_num)
-      @words = @unit.words.includes(:unit, {:mistake_records => :user}).order('created_at DESC').page(params[:page]).per(5)
-    end
+    @words = Word.unit_or_search(params[:commit], params[:word]).order('created_at DESC').page(params[:page]).per(5)
   end
 
   def new
