@@ -1,9 +1,12 @@
 <%= simple_form_for @word do |f| %>
 <%= f.input :spelling %>
-<%= f.select :unit_id, Unit.all.map{|u| [u.unit_number, u.id]} %>
+<%= f.association :unit, collection: Unit.all.map{|u| [u.unit_number, u.id]} %>
 <%= f.input :meaning %>
 <%= f.input :word_type %>
 <%= f.input :sentence %>
 <%= f.input :synonym %>
 <%= f.submit "生成", class: "btn btn-info" %>
 <% end %>
+<script>
+  $("#word_unit_id").select2( { theme: "bootstrap"} );
+</script>
