@@ -1,8 +1,11 @@
 <h1 align="center">matching</h1>
 <div class="pull-right" style="margin-bottom:10px">
+  <%= link_to 'View error log', match_words_path(commit: 'View error log'), :remote => true, class: "btn btn-success" %>
   <%= link_to 'renew', renew_word_words_path, class: "btn btn-warning" %>
 </div>
-<table class="table table-hover">
+
+<div id="view_error_log">
+  <table class="table table-hover">
   <tr>
     <th>number</th>
     <th>spelling</th>
@@ -27,6 +30,7 @@
       <% end %>
     </tr>
   <% end %>
+  </table>
+</div>
 
-</table>
 <%= paginate @words %>

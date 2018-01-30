@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection do
       get :match
       get :renew_word
+      get :view_error_log
     end
     member do
       post :check_up

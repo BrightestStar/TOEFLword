@@ -31,8 +31,14 @@ class WordsController < ApplicationController
   end
 
   def match
-    @words = Word.where(mistake: [0, nil]).order("RAND()").page(params[:page]).per(6)
-    @word_synonym = @words.sample(6).map{|w| w.synonym.split(',').sample}
+    if params[:commit].present? && params[:commit] == 'View error log'
+      @words = Word.where('mistake =?', 2)
+      @word_synonym = []
+    else
+      @words = Word.where(mistake: [0, nil]).order("RAND()").page(params[:page]).per(6)
+      @word_synonym = @words.sample(6).map{|w| w.synonym.split(',').sample}
+    end
+
   end
 
   def renew_word

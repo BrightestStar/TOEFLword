@@ -1,0 +1,20 @@
+<div id="view_error_log">
+  <table class="table table-hover">
+  <tr>
+    <th>number</th>
+    <th>spelling</th>
+    <th>meaning/type</th>
+    <th>synonym</th>
+    <th id="adjusting">Adjusting</th>
+  </tr>
+  <% @words.each_with_index do |word, i| %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= word.spelling %></td>
+      <td><%= word.meaning %>/<%= word.word_type %></td>
+      <td><%= word.synonym %></td>
+      <td>X</td>
+    </tr>
+  <% end %>
+  </table>
+</div>
