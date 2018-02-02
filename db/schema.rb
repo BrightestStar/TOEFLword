@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122085416) do
+ActiveRecord::Schema.define(version: 20180202075849) do
 
   create_table "mistake_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180122085416) do
     t.integer "unit_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "input_status"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20180122085416) do
     t.integer "mistake"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "exist_num", default: 1
   end
 
 end

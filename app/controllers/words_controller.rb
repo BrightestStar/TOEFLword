@@ -34,6 +34,9 @@ class WordsController < ApplicationController
     if params[:commit].present? && params[:commit] == 'View error log'
       @words = Word.where('mistake =?', 2)
       @word_synonym = []
+    elsif Word.where(mistake: [0, nil]).where(exist_num: 1).present?
+      @words = Word.where(mistake: [0, nil]).where(exist_num: 1).order("RAND()").page(params[:page]).per(6)
+      @word_synonym = @words.sample(6).map{|w| w.synonym.split(',').sample}
     else
       @words = Word.where(mistake: [0, nil]).order("RAND()").page(params[:page]).per(6)
       @word_synonym = @words.sample(6).map{|w| w.synonym.split(',').sample}
@@ -66,6 +69,6 @@ class WordsController < ApplicationController
   end
 
   def word_params
-    params.require(:word).permit(:spelling, :meaning, :word_type, :sentence, :synonym, :mistake)
+    params.require(:word).permit(:spelling, :meaning, :word_type, :sentence, :synonym, :mistake, :exist_num)
   end
 end
