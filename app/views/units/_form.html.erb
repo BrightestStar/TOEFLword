@@ -1,0 +1,18 @@
+<%= simple_form_for @unit do |f|%>
+<%= f.input :unit_number %>
+<% input_status = t("unit.input_status") %>
+<div class="btn-group" data-toggle="buttons">
+  <% input_status.each do |status| %>
+    <label class="btn btn-default">
+      <%= f.radio_button :input_status, status %>
+      <%= t(status) %>
+    </label>
+  <% end %>
+</div>
+<br><br>
+<%= f.submit 'Sure', class: "btn btn-info" %>
+<% end %>
+
+<script>
+  $("#unit_input_status").select2( { theme: "bootstrap"} );
+</script>

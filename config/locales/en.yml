@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  unit:
+    input_status: ["未完成", "已完成"]

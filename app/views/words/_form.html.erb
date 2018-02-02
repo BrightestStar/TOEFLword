@@ -1,6 +1,7 @@
 <%= simple_form_for @word do |f| %>
 <%= f.input :spelling %>
-<%= f.association :unit, collection: Unit.all.map{|u| [u.unit_number, u.id]}, selected: Unit.all.map(&:unit_number).min %>
+<% min_num = Unit.where("input_status =?", "未完成").map(&:unit_number).min %>
+<%= f.association :unit, collection: Unit.order(:unit_number).map{|u| [u.unit_number, u.id]}, selected: min_num %>
 <%= f.input :meaning %>
 <%= f.input :word_type %>
 <%= f.input :sentence %>
