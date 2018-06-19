@@ -1,10 +1,17 @@
-<% @units.each do |unit| %>
-<a class="btn">
-  <%= form_tag words_path, :method => :get do %>
-    <%= submit_tag "Unit #{unit.unit_number}", class: "btn btn-default" %>
+<div class="allUnit">
+  <% @units.each do |unit| %>
+  <a class="btn">
+    <%= form_tag words_path, :method => :get do %>
+      <%= submit_tag "Unit #{unit.unit_number}", class: "btn btn-default" %>
+    <% end %>
+  </a>
   <% end %>
-</a>
-<% end %>
+</div>
+<div class="button">
+  <button type="button" onclick="showToefl()" name="button" class="btn btn-sm btn-default" style="float:left">TOEFL Words</button>
+  <a id="allHide" type="button" class="btn btn-sm btn-default" style="float:left">^收起</a>
+</div>
+
 <div class="pull-right" style="margin-bottom:10px">
   <%= link_to 'New Word', new_word_path, class:"btn btn-info" %>
 </div>
@@ -43,3 +50,20 @@
   <%= link_to 'Match Train', match_words_path, class: "btn btn-warning"%>
 </div>
 <%= paginate @words, params: {commit: params[:commit]}  %>
+
+
+<script>
+$(".allUnit").hide();
+$("#allHide").hide()
+function showToefl(){
+  $(".allUnit").show();
+  $("#allHide").show()
+  $("#allHide").parent().find('button').hide()
+}
+$("a").on("click", function(){
+  $(".allUnit").hide();
+  $("#allHide").hide()
+  $("#allHide").parent().find('button').show()
+})
+
+</script>
