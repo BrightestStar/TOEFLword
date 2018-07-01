@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202075849) do
+ActiveRecord::Schema.define(version: 20180701150430) do
 
   create_table "mistake_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180202075849) do
     t.integer "unit_id"
     t.string "meaning"
     t.string "word_type"
-    t.string "sentence"
+    t.text "sentence"
     t.string "synonym"
     t.integer "mistake"
     t.datetime "created_at", null: false
