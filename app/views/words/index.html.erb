@@ -47,23 +47,25 @@
   <% end %>
 </div>
 <div class="pull-right" style="margin-top:10px">
-  <%= link_to 'Match Train', match_words_path, class: "btn btn-warning"%>
+  <%= link_to 'Match Train', matching_words_path, class: "btn btn-warning"%>
 </div>
 <%= paginate @words, params: {commit: params[:commit]}  %>
 
 
 <script>
-$(".allUnit").hide();
-$("#allHide").hide()
-function showToefl(){
-  $(".allUnit").show();
-  $("#allHide").show()
-  $("#allHide").parent().find('button').hide()
-}
-$("a").on("click", function(){
+$(document).ready(function(){
   $(".allUnit").hide();
   $("#allHide").hide()
-  $("#allHide").parent().find('button').show()
+  function showToefl(){
+    $(".allUnit").show();
+    $("#allHide").show()
+    $("#allHide").parent().find('button').hide()
+  }
+  $("a").on("click", function(){
+    $(".allUnit").hide();
+    $("#allHide").hide()
+    $("#allHide").parent().find('button').show()
+  })
 })
 
 </script>

@@ -30,7 +30,7 @@ class WordsController < ApplicationController
     redirect_to words_path
   end
 
-  def match
+  def matching
     if params[:commit].present? && params[:commit] == 'View error log'
       @words = Word.where('mistake =?', 2)
       @word_synonym = []

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :words do
     collection do
-      get :match
+      get :matching
       get :renew_word
       get :view_error_log
     end
