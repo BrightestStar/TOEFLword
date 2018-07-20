@@ -46,7 +46,7 @@ class WordsController < ApplicationController
 
   def renew_word
     Word.where("mistake !=?", 0).update_all(["mistake =?", 0])
-    redirect_to match_words_path
+    redirect_to matching_words_path
   end
 
   def check_up
